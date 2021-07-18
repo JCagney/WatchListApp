@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  icon: {
+    padding: 10, 
+  },
   offset: theme.mixins.toolbar,
 }));
 
@@ -47,8 +50,10 @@ const SiteHeader = ( { history }) => {
     <>
       <AppBar position="fixed" color="secondary">
         <Toolbar>
+          <img className={classes.icon} src="/icon.png"></img>
+          
           <Typography variant="h4" className={classes.title}>
-            TMDB Client
+             WatchList
           </Typography>
           <Typography variant="h6" className={classes.title}>
             All you ever wanted to know about Movies!
