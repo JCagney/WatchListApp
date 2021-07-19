@@ -11,6 +11,8 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from "./pages/addMovieReviewPage";
+import Approved from "./pages/approved";
+import { getAuthenticationToken } from "./api/tmdb-api";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,13 +24,21 @@ const queryClient = new QueryClient({
   },
 });
 
+
 const App = () => {
+
+  const authenticate = () => {
+     getAuthenticationToken().then(res => window.location = `https://www.themoviedb.org/authenticate/${res.request_token}?redirect_to=http://localhost:3000/approved`);
+
+   }
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SiteHeader /> {/* New Header  */}
         <MoviesContextProvider>
           <Switch>
+            <Route exact path="/approved" component={Approved}/>
+            <Route exact path="/authenticate" render={ authenticate} />
             <Route exact path="/reviews/form" component={AddMovieReviewPage} />
             <Route
               exact

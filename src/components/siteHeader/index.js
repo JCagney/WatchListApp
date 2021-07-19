@@ -17,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  icon: {
-    padding: 10, 
-  },
   offset: theme.mixins.toolbar,
 }));
 
@@ -34,7 +31,7 @@ const SiteHeader = ( { history }) => {
     { label: "Home", path: "/" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favorites" },
-    { label: "Option 3", path: "/" },
+    { label: "Login to TMDB", path: "/authenticate" },
     { label: "Option 4", path: "/" },
   ];
 
@@ -50,8 +47,9 @@ const SiteHeader = ( { history }) => {
     <>
       <AppBar position="fixed" color="secondary">
         <Toolbar>
-          <img className={classes.icon} src="/icon.png"></img>
-          
+          <IconButton onClick= {() => history.push("/")}>
+          <img src="/icon.png" alt="film icon"></img>   
+          </IconButton>       
           <Typography variant="h4" className={classes.title}>
              WatchList
           </Typography>

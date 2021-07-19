@@ -68,3 +68,40 @@
     }
     return response.json();
   };
+
+  export const getAuthenticationToken =  () => {
+    return fetch(
+      `https://api.themoviedb.org/3/authentication/token/new?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+  
+  export const getSession =  (token) => {
+    console.log(token);
+    return fetch(
+      `https://api.themoviedb.org/3/authentication/session/new?api_key=${process.env.REACT_APP_TMDB_KEY}`, {method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        request_token: token
+      })
+    }
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+
+  export const getAccount =  (session_id) => {
+    return fetch(
+      `https://api.themoviedb.org/3/account?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}`
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+
+
