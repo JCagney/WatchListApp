@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -12,6 +12,7 @@ import Menu from "@material-ui/core/Menu";
 import { withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { UserContext } from "../../contexts/userContext";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -26,6 +27,7 @@ const SiteHeader = ( { history }) => {
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const context = useContext(UserContext);
 
   const menuOptions = [
     { label: "Home", path: "/" },
@@ -54,7 +56,7 @@ const SiteHeader = ( { history }) => {
              WatchList
           </Typography>
           <Typography variant="h6" className={classes.title}>
-            All you ever wanted to know about Movies!
+            All you ever wanted to know about Movies {context.user?.username}!
           </Typography>
             {isMobile ? (
               <>
