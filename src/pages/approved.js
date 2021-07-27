@@ -11,6 +11,8 @@ const Approved = (props) => {
        }
     });
 
+    console.log(context.user);
+
     return (
     <>
     <h1>Welcome to Watchlist, {context.user?.username}! </h1>

@@ -92,6 +92,7 @@ const SiteHeader = ( { history }) => {
                       {opt.label}
                     </MenuItem>
                   ))}
+
                 </Menu>
               </>
             ) : (
@@ -107,6 +108,7 @@ const SiteHeader = ( { history }) => {
                 ))}
               </>
             )}
+            {context.authenticated ? <MenuItem key="Logout" onClick={ () => {context.logout(); history.push("/")}}>Logout </MenuItem> : <></> }
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />

@@ -105,3 +105,17 @@
   };
 
 
+  export const deleteSession =  (sessionId) => {
+    return fetch(
+      `https://api.themoviedb.org/3/authentication/session?api_key=${process.env.REACT_APP_TMDB_KEY}`, {method: 'DELETE', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        session_id: sessionId
+      })
+    }
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  }; 
+
