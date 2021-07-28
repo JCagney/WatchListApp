@@ -33,7 +33,6 @@ const SiteHeader = ( { history }) => {
     { label: "Home", path: "/" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favorites" },
-    { label: "Login to TMDB", path: "/authenticate" },
     { label: "Option 4", path: "/" },
   ];
 
@@ -108,7 +107,8 @@ const SiteHeader = ( { history }) => {
                 ))}
               </>
             )}
-            {context.authenticated ? <MenuItem key="Logout" onClick={ () => {context.logout(); history.push("/")}}>Logout </MenuItem> : <></> }
+            {context.authenticated ? <MenuItem key="Logout" onClick={ () => {context.logout(); history.push("/")}}>Logout </MenuItem> : 
+            <MenuItem key="Logout" onClick={ () => history.push("/authenticate")}>Login to TMDB </MenuItem> }
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
