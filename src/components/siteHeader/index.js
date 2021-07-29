@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 
 import MenuIcon from "@material-ui/icons/Menu";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { withRouter } from "react-router-dom";
@@ -21,10 +22,12 @@ const useStyles = makeStyles((theme) => ({
   offset: theme.mixins.toolbar,
 }));
 
-const SiteHeader = ( { history }) => {
+const SiteHeader = ({ history }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [authAnchorEl, setAuthAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const authOpen = Boolean(authAnchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const context = useContext(UserContext);
@@ -33,7 +36,7 @@ const SiteHeader = ( { history }) => {
     { label: "Home", path: "/" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favorites" },
-    { label: "Option 4", path: "/" },
+    { label: "Search", path: "/search" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -44,71 +47,121 @@ const SiteHeader = ( { history }) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleAuthMenu = (event) => {
+    console.log("authmenu"); 
+    setAuthAnchorEl(event.currentTarget);
+  };
+
   return (
     <>
       <AppBar position="fixed" color="secondary">
         <Toolbar>
-          <IconButton onClick= {() => history.push("/")}>
-          <img src="/icon.png" alt="film icon"></img>   
-          </IconButton>       
+          <IconButton onClick={() => history.push("/")}>
+            <img src="/icon.png" alt="film icon"></img>
+          </IconButton>
           <Typography variant="h4" className={classes.title}>
-             WatchList
+            WatchList
           </Typography>
           <Typography variant="h6" className={classes.title}>
             All you ever wanted to know about Movies {context.user?.username}!
           </Typography>
-            {isMobile ? (
-              <>
-                <IconButton
-                  aria-label="menu"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={open}
-                  onClose={() => setAnchorEl(null)}
-                >
-                  {menuOptions.map((opt) => (
-                    <MenuItem
-                      key={opt.label}
-                      onClick={() => handleMenuSelect(opt.path)}
-                    >
-                      {opt.label}
-                    </MenuItem>
-                  ))}
-
-                </Menu>
-              </>
-            ) : (
-              <>
+          {isMobile ? (
+            <>
+              <IconButton
+                aria-label="menu"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={() => setAnchorEl(null)}
+              >
                 {menuOptions.map((opt) => (
-                  <Button
+                  <MenuItem
                     key={opt.label}
-                    color="inherit"
                     onClick={() => handleMenuSelect(opt.path)}
                   >
                     {opt.label}
-                  </Button>
+                  </MenuItem>
                 ))}
-              </>
-            )}
-            {context.authenticated ? <MenuItem key="Logout" onClick={ () => {context.logout(); history.push("/")}}>Logout </MenuItem> : 
-            <MenuItem key="Logout" onClick={ () => history.push("/authenticate")}>Login to TMDB </MenuItem> }
+              </Menu>
+            </>
+          ) : (
+            <>
+              {menuOptions.map((opt) => (
+                <Button
+                  key={opt.label}
+                  color="inherit"
+                  onClick={() => handleMenuSelect(opt.path)}
+                >
+                  {opt.label}
+                </Button>
+              ))}
+            </>
+          )}
+          {context.authenticated ? (
+            <>
+            <IconButton
+                aria-label="authmenu"
+                aria-controls="authmenu-appbar"
+                aria-haspopup="true"
+                onClick={handleAuthMenu}
+                color="inherit"
+              >
+                <AccountCircleIcon />
+              </IconButton>
+              <Menu
+                id="authmenu-appbar"
+                anchorEl={authAnchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={authOpen}
+                onClose={() => setAuthAnchorEl(null)}
+              >
+            <MenuItem>
+            {context.user?.username}
+            </MenuItem>    
+            <MenuItem
+              key="Logout"
+              onClick={() => {
+                context.logout();
+                history.push("/");
+              }}
+            >
+              Logout{" "}
+            </MenuItem>
+            </Menu>
+            </>
+          ) : (
+            <MenuItem
+              key="Login"
+              onClick={() => history.push("/authenticate")}
+            >
+              Login to TMDB{" "}
+            </MenuItem>
+          )}
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />

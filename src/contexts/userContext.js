@@ -18,7 +18,6 @@ const UserContextProvider = (props) => {
         ignoreQueryPrefix: true,
       }).request_token;
       console.log(token);
-      //var user = getSession(token).then(res => (getAccount(res.session_id)))
       getSession(token)
         .then((res) => {
           setSessionId(res.session_id);

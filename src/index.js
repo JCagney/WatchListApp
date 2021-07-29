@@ -13,6 +13,7 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import UserContextProvider from "./contexts/userContext";
 import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import Approved from "./pages/approved";
+import Search from "./pages/Search";
 import { getAuthenticationToken } from "./api/tmdb-api";
 
 const queryClient = new QueryClient({
@@ -40,6 +41,7 @@ const App = () => {
         
           <MoviesContextProvider>
             <Switch>
+              <Route exact path="/search" component={Search} />
               <Route exact path="/approved" component={Approved} />
               <Route exact path="/authenticate" render={authenticate} />
               <Route

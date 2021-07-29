@@ -1,4 +1,4 @@
-import React,  { useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { UserContext } from "../contexts/userContext";
 
 
@@ -12,12 +12,8 @@ const Approved = (props) => {
     });
 
     console.log(context.user);
+    props.history.push("/");
+    return(<></>);
 
-    return (
-    <>
-    <h1>Welcome to Watchlist, {context.user?.username}! </h1>
-
-        </>
-    )
 };
     export default Approved;
