@@ -5,7 +5,7 @@ import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToPlaylistIcon from '../components/cardIcons/addToPlaylist'
-import FavoriteHeader from '../components/cardHeaders/favoriteHeader'
+import PlaylistHeader from '../components/cardHeaders/playlistHeader'
 
 
 const UpcomingMoviesPage = (props) => {
@@ -28,7 +28,7 @@ const UpcomingMoviesPage = (props) => {
         return <AddToPlaylistIcon movie={movie} />
       }}
       cardHeader={(movie) => {
-        return <FavoriteHeader movie={movie}/>
+        return <PlaylistHeader movie={movie}/>
       
       }}
     />
