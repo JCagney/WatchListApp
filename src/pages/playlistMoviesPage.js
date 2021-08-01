@@ -4,17 +4,17 @@ import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
-import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
-import WriteReview from "../components/cardIcons/writeReview";
-import FavoriteHeader from '../components/cardHeaders/favoriteHeader'
+import RemoveFromPlaylist from "../components/cardIcons/removeFromPlaylist";
+//import WriteReview from "../components/cardIcons/writeReview";
+import PlaylistHeader from '../components/cardHeaders/playlistHeader'
 
 
-const FavoriteMoviesPage = () => {
-  const {favorites: movieIds } = useContext(MoviesContext);
-  
+const PlaylistMoviesPage = () => {
+  const {playlist: movieIds } = useContext(MoviesContext);
+  console.log(movieIds);
 
   // Create an array of queries and run in parallel.
-  const favoriteMovieQueries = useQueries(
+  const playlistMovieQueries = useQueries(
     movieIds.map((movieId) => {
       return {
         queryKey: ["movie", { id: movieId }],
@@ -23,31 +23,30 @@ const FavoriteMoviesPage = () => {
     })
   );
   // Check if any of the parallel queries is still loading.
-  const isLoading = favoriteMovieQueries.find((m) => m.isLoading === true);
+  const isLoading = playlistMovieQueries.find((m) => m.isLoading === true);
 
   if (isLoading) {
     return <Spinner />;
   }
-  const movies = favoriteMovieQueries.map((q) => q.data);
+  const movies = playlistMovieQueries.map((q) => q.data);
 
   return (
     <PageTemplate
-      title="Favourite Movies"
+      title="Movie Playlist"
       movies={movies}
       action={(movie) => {
         return (
           <>
-            <RemoveFromFavorites movie={movie} />
-            <WriteReview movie={movie} />
+            <RemoveFromPlaylist movie={movie} />
           </>
         );
       }}
       cardHeader={(movie) => {
-        return <FavoriteHeader movie={movie}/>
+        return <PlaylistHeader movie={movie}/>
       
       }}
     />
   );
 };
 
-export default FavoriteMoviesPage;
+export default PlaylistMoviesPage;
