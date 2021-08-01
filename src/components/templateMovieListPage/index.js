@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MovieListPageTemplate({ movies, title, action  }) {
+function MovieListPageTemplate({ movies, title, action, cardHeader  }) {
   const classes = useStyles();
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -43,7 +43,7 @@ function MovieListPageTemplate({ movies, title, action  }) {
             genreFilter={genreFilter}
           />
         </Grid>
-        <MovieList action={action} movies={displayedMovies}></MovieList>
+        <MovieList action={action} movies={displayedMovies} cardHeader={cardHeader}></MovieList>
       </Grid>
     </Grid>
   );

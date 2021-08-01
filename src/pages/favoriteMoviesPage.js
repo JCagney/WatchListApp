@@ -6,6 +6,8 @@ import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
 import WriteReview from "../components/cardIcons/writeReview";
+import FavoriteHeader from '../components/cardHeaders/favoriteHeader'
+
 
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
@@ -38,6 +40,10 @@ const FavoriteMoviesPage = () => {
             <WriteReview movie={movie} />
           </>
         );
+      }}
+      cardHeader={(movie) => {
+        return <FavoriteHeader movie={movie}/>
+      
       }}
     />
   );

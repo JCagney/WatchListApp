@@ -4,17 +4,13 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardHeader from "@material-ui/core/CardHeader";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
-//import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import img from "../../images/film-poster-placeholder.png";
 import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
 import { MoviesContext } from "../../contexts/moviesContext";
 
 const useStyles = makeStyles({
@@ -25,14 +21,21 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MovieCard({ movie, action }) {
+export default function MovieCard({ movie, action, cardHeader }) {
   const classes = useStyles();
   const { favorites } = useContext(MoviesContext);
+  const { playlist } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
     movie.favorite = false;
+  }
+
+  if (playlist.find((id) => id === movie.id)) {
+    movie.playlist = true;
+  } else {
+    movie.playlist = false;
   }
 
   // const handleAddToFavorite = (e) => {
@@ -42,21 +45,22 @@ export default function MovieCard({ movie, action }) {
 
   return (
     <Card className={classes.card}>
-      <CardHeader
+      {cardHeader(movie) 
+          /* <CardHeader
         className={classes.header}
-        avatar={
-          movie.favorite ? (
-            <Avatar className={classes.avatar}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
+        avatar={avatar
+          // movie.favorite ? (
+          //   <Avatar className={classes.avatar}>
+          //     <FavoriteIcon />
+          //   </Avatar>
+          // ) : null
         }
         title={
           <Typography variant="h5" component="p">
             {movie.title}{" "}
           </Typography>
         }
-      />
+      /> */}
       <CardMedia
         className={classes.media}
         image={

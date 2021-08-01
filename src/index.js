@@ -13,7 +13,7 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import UserContextProvider from "./contexts/userContext";
 import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import Approved from "./pages/approved";
-import Search from "./pages/Search";
+import Search from "./pages/search";
 import { getAuthenticationToken } from "./api/tmdb-api";
 
 const queryClient = new QueryClient({

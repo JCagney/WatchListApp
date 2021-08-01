@@ -4,6 +4,7 @@ import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
 import {getMovies} from '../api/tmdb-api'
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import FavoriteHeader from '../components/cardHeaders/favoriteHeader'
 
 
 const HomePage = (props) => {
@@ -25,7 +26,11 @@ const HomePage = (props) => {
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
       }}
-    />    
+      cardHeader={(movie) => {
+        return <FavoriteHeader movie={movie}/>
+      
+      }}
+      />
   );
 };
 
