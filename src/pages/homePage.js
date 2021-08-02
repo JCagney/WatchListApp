@@ -30,6 +30,7 @@ const HomePage = (props) => {
         return <FavoriteHeader movie={movie}/>
       
       }}
+      filter={true}
       />
   );
 };

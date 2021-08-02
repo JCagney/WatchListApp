@@ -31,6 +31,7 @@ const UpcomingMoviesPage = (props) => {
         return <PlaylistHeader movie={movie}/>
       
       }}
+      filter={true}
     />
   );
 };

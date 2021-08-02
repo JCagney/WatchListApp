@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MovieListPageTemplate({ movies, title, action, cardHeader  }) {
+function MovieListPageTemplate({ movies, title, action, cardHeader, filter  }) {
   const classes = useStyles();
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -22,7 +22,7 @@ function MovieListPageTemplate({ movies, title, action, cardHeader  }) {
       return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
     })
     .filter((m) => {
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+      return genreId > 0 ? m.genre_ids?.includes(genreId) : true;
     });
 
   const handleChange = (type, value) => {
@@ -35,14 +35,16 @@ function MovieListPageTemplate({ movies, title, action, cardHeader  }) {
       <Grid item xs={12}>
         <Header title={title} />
       </Grid>
+      
       <Grid item container spacing={5}>
+        {filter? 
         <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
           <FilterCard
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
           />
-        </Grid>
+        </Grid> : <></>}
         <MovieList action={action} movies={displayedMovies} cardHeader={cardHeader}></MovieList>
       </Grid>
     </Grid>
