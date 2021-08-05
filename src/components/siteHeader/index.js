@@ -31,11 +31,20 @@ const SiteHeader = ({ history }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const context = useContext(UserContext);
+  console.log(context.user);
 
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favorites" },
+    { label: "Playlist", path: "/movies/playlist" },
+    { label: "Search", path: "/search" },
+  ];
+
+  const authMenuOptions = [
+    { label: "Home", path: "/" },
+    { label: "Upcoming", path: "/movies/upcoming" },
+    { label: "Favorites", path: "/movies/auth/favorites" },
     { label: "Playlist", path: "/movies/playlist" },
     { label: "Search", path: "/search" },
   ];
@@ -92,19 +101,28 @@ const SiteHeader = ({ history }) => {
                 open={open}
                 onClose={() => setAnchorEl(null)}
               >
-                {menuOptions.map((opt) => (
+                {context.authenticated? authMenuOptions.map((opt)  => (
                   <MenuItem
                     key={opt.label}
                     onClick={() => handleMenuSelect(opt.path)}
                   >
                     {opt.label}
                   </MenuItem>
-                ))}
+                )): 
+                menuOptions.map((opt)  => (
+                  <MenuItem
+                    key={opt.label}
+                    onClick={() => handleMenuSelect(opt.path)}
+                  >
+                    {opt.label}
+                  </MenuItem>
+                ))
+                }
               </Menu>
             </>
           ) : (
             <>
-              {menuOptions.map((opt) => (
+              {context.authenticated? authMenuOptions.map((opt) => (
                 <Button
                   key={opt.label}
                   color="inherit"
@@ -112,7 +130,17 @@ const SiteHeader = ({ history }) => {
                 >
                   {opt.label}
                 </Button>
-              ))}
+              )):
+              menuOptions.map((opt) => (
+                <Button
+                  key={opt.label}
+                  color="inherit"
+                  onClick={() => handleMenuSelect(opt.path)}
+                >
+                  {opt.label}
+                </Button>
+              ))
+              }
             </>
           )}
           {context.authenticated ? (

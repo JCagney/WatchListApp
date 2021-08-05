@@ -43,6 +43,7 @@ const UserContextProvider = (props) => {
       value={{
         authenticated,
         user,
+        sessionId,
         setAuthenticated,
         setUser,
         authenticate,

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { MoviesContext } from "../contexts/moviesContext";
-import { useQueries } from "react-query";
-import { getMovie } from "../api/tmdb-api";
+import { useQuery } from "react-query";
+import { getFavorites } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
 import WriteReview from "../components/cardIcons/writeReview";
@@ -10,34 +10,21 @@ import FavoriteHeader from "../components/cardHeaders/favoriteHeader";
 import { UserContext } from "../contexts/userContext";
 
 
-const FavoriteMoviesPage = () => {
+const AuthFavoriteMoviesPage = () => {
   const context = useContext(UserContext);
-  const { favorites: movieIds } = useContext(MoviesContext);
-
-  var movies = [];
-
   
-    
-    // Create an array of queries and run in parallel.
-    const favoriteMovieQueries = useQueries(
-      movieIds.map((movieId) => {
-        return {
-          queryKey: ["movie", { id: movieId }],
-          queryFn: getMovie,
-        };
-      })
-    );
-    // Check if any of the parallel queries is still loading.
-    const isLoading = favoriteMovieQueries.find((m) => m.isLoading === true);
+  const {  data, error, isLoading, isError }  = useQuery( ["favorites", { session_id: context.sessionId, account_id: context.user.id} ], getFavorites);
+     
+  
+  if (isLoading) {
+    return <Spinner />
+  }
 
-    if (isLoading) {
-      return <Spinner />;
-    }
-
-      // movies = getFavorites(context.sessionId, context.user?.id).then((res) => {
-      //   return res.results;
-
-     movies = favoriteMovieQueries.map((q) => q.data);
+  if (isError) {
+    return <h1>{error.message}</h1>
+  }
+  const movies = data.results;
+  
   
 
   return (
@@ -63,4 +50,4 @@ const FavoriteMoviesPage = () => {
   );
 };
 
-export default FavoriteMoviesPage;
+export default AuthFavoriteMoviesPage;

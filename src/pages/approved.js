@@ -11,7 +11,7 @@ const Approved = (props) => {
        }
     });
 
-    console.log(context.user);
+    
     props.history.push("/");
     return(<></>);
 

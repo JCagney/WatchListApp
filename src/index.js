@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
+import AuthFavoriteMoviesPage from "./pages/authFavoriteMoviesPage";
 import PlaylistMoviesPage from "./pages/playlistMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
@@ -15,6 +16,7 @@ import UserContextProvider from "./contexts/userContext";
 import AddMovieReviewPage from "./pages/addMovieReviewPage";
 import Approved from "./pages/approved";
 import Search from "./pages/search";
+import PrivateRoute from "./components/privateRoute";
 import { getAuthenticationToken } from "./api/tmdb-api";
 
 const queryClient = new QueryClient({
@@ -60,6 +62,11 @@ const App = () => {
                 exact
                 path="/movies/favorites"
                 component={FavoriteMoviesPage}
+              />
+              <Route
+                exact
+                path="/movies/auth/favorites"
+                component={AuthFavoriteMoviesPage}
               />
               <Route
                 exact

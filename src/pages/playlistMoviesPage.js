@@ -7,9 +7,11 @@ import Spinner from '../components/spinner';
 import RemoveFromPlaylist from "../components/cardIcons/removeFromPlaylist";
 //import WriteReview from "../components/cardIcons/writeReview";
 import PlaylistHeader from '../components/cardHeaders/playlistHeader'
+import { UserContext } from "../contexts/userContext";
 
 
 const PlaylistMoviesPage = () => {
+  const context = useContext(UserContext);  
   const {playlist: movieIds } = useContext(MoviesContext);
   console.log(movieIds);
 
@@ -28,11 +30,12 @@ const PlaylistMoviesPage = () => {
   if (isLoading) {
     return <Spinner />;
   }
+  
   const movies = playlistMovieQueries.map((q) => q.data);
 
   return (
     <PageTemplate
-      title="Movie Playlist"
+      title={context.user? `${context.user.username}'s Movie WatchList`: "Movie Watchlist"}
       movies={movies}
       action={(movie) => {
         return (

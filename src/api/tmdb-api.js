@@ -122,3 +122,32 @@
       });
   }; 
 
+  export const getFavorites =  (args) => {
+    console.log(args);
+    const [prefix, { account_id, session_id }] = args.queryKey;
+    return fetch(
+      `https://api.themoviedb.org/3/account/${account_id}/favorite/movies?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}&language=en-US&sort_by=created_at.asc&page=1`
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+
+  export const addFavoriteMovie =  (session_id, account_id, movie_id) => {
+
+    return fetch(
+      `https://api.themoviedb.org/3/account/${account_id}/favorite?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}`, {method: 'POST', headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        media_type: "movie",
+        media_id: movie_id,
+        favorite: true
+      })
+    }
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+

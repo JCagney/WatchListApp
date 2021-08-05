@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import MovieList from "../movieList";
 
+
 const useStyles = makeStyles({
   root: {
     padding: "20px",

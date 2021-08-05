@@ -1,36 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "./userContext";
+import { getFavorites, addFavoriteMovie } from '../api/tmdb-api'
 
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
-  const [myReviews, setMyReviews] = useState( {} ) 
-  const [favorites, setFavorites] = useState( [] )
-  const [playlist, setPlaylist] = useState( [] )
+  const context = useContext(UserContext);
+
+
+  const [myReviews, setMyReviews] = useState({});
+  const [favorites, setFavorites] = useState([]);
+  const [playlist, setPlaylist] = useState([]);
+
+  
+
 
   const addToFavorites = (movie) => {
-    setFavorites([...favorites,movie.id])
+    
+    setFavorites([...favorites, movie.id]);
   };
 
   const addToPlaylist = (movie) => {
-    setPlaylist([...playlist,movie.id]);
+    setPlaylist([...playlist, movie.id]);
     console.log(playlist);
   };
   // We will use this function in a later section
   const removeFromFavorites = (movie) => {
-    setFavorites( favorites.filter(
-      (mId) => mId !== movie.id
-    ) )
+    setFavorites(favorites.filter((mId) => mId !== movie.id));
   };
 
   const removeFromPlaylist = (movie) => {
-    setPlaylist( playlist.filter(
-      (mId) => mId !== movie.id
-    ) )
+    setPlaylist(playlist.filter((mId) => mId !== movie.id));
   };
 
   const addReview = (movie, review) => {
-    setMyReviews( {...myReviews, [movie.id]: review } )
+    setMyReviews({ ...myReviews, [movie.id]: review });
   };
+
+
+// get user favorites and add to favorites array 
+  // if (context.user){
+  //   getFavorites(context.sessionId, context.user?.id).then((res) => res.results.forEach(result => {addToFavorites(result.id)}))
+      
+ 
+
+  // }
 
   return (
     <MoviesContext.Provider
@@ -39,9 +53,9 @@ const MoviesContextProvider = (props) => {
         playlist,
         addToFavorites,
         addToPlaylist,
-        removeFromFavorites, 
+        removeFromFavorites,
         removeFromPlaylist,
-        addReview
+        addReview,
       }}
     >
       {props.children}

@@ -6,17 +6,24 @@ import {getMovies} from '../api/tmdb-api'
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 import FavoriteHeader from '../components/cardHeaders/favoriteHeader'
 import Pagination from '@material-ui/lab/Pagination';
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles({
+  pagination: {
+    padding: "40px",
+  },
+});
 
 const HomePage = (props) => {
+  const classes = useStyles();
   const [page, setPage] = React.useState(1);
   console.log(page);
 
 
-  const handleChange = (event, value) => {
+  const handlePageChange = (event, value) => {
     setPage(value);
   };
-  const {  data, error, isLoading, isError }  = useQuery(["discover", { page: page} ], getMovies);
+  const {  data, error, isLoading, isError }  = useQuery( ["discover", { page: page} ], getMovies);
 
   if (isLoading) {
     return <Spinner />
@@ -41,7 +48,7 @@ const HomePage = (props) => {
       }}
       filter={true}
       />
-      <Pagination count={10} page={page} onChange={handleChange} shape="rounded" size="large" />
+      <Pagination className={classes.pagination} count={10} page={page} onChange={handlePageChange} shape="rounded" size="large" />
       </>
   );
 };
