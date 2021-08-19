@@ -1,4 +1,4 @@
-
+  
   
   export const getMovies = async ( args ) => {
     console.log(args);
@@ -125,6 +125,7 @@
   export const getFavorites =  (args) => {
     console.log(args);
     const [prefix, { account_id, session_id }] = args.queryKey;
+
     return fetch(
       `https://api.themoviedb.org/3/account/${account_id}/favorite/movies?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}&language=en-US&sort_by=created_at.asc&page=1`
     )
@@ -151,3 +152,69 @@
       });
   };
 
+
+
+  export const removeFavoriteMovie =  (session_id, account_id, movie_id) => {
+
+    return fetch(
+      `https://api.themoviedb.org/3/account/${account_id}/favorite?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}`, {method: 'POST', headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        media_type: "movie",
+        media_id: movie_id,
+        favorite: false
+      })
+    }
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+
+
+  export const getPlaylist =  (args) => {
+    console.log(args);
+    const [prefix, { account_id, session_id }] = args.queryKey;
+
+    return fetch(
+      `https://api.themoviedb.org/3/account/${account_id}/watchlist/movies?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}&language=en-US&sort_by=created_at.asc&page=1`
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+
+  export const addPlaylistMovie =  (session_id, account_id, movie_id) => {
+
+    return fetch(
+      `https://api.themoviedb.org/3/account/${account_id}/watchlist?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}`, {method: 'POST', headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        media_type: "movie",
+        media_id: movie_id,
+        watchlist: true
+      })
+    }
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+
+  export const removePlaylistMovie =  (session_id, account_id, movie_id) => {
+
+    return fetch(
+      `https://api.themoviedb.org/3/account/${account_id}/watchlist?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}`, {method: 'POST', headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        media_type: "movie",
+        media_id: movie_id,
+        watchlist: false
+      })
+    }
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };

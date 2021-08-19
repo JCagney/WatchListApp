@@ -6,6 +6,7 @@ import MoviePage from "./pages/movieDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import AuthFavoriteMoviesPage from "./pages/authFavoriteMoviesPage";
 import PlaylistMoviesPage from "./pages/playlistMoviesPage";
+import AuthPlaylistMoviesPage from "./pages/authPlaylistMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 import SiteHeader from "./components/siteHeader";
@@ -24,7 +25,9 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 360000,
       refetchInterval: 360000,
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: "true", 
+      refetchOnMount: "always",
+      
     },
   },
 });
@@ -63,10 +66,15 @@ const App = () => {
                 path="/movies/favorites"
                 component={FavoriteMoviesPage}
               />
-              <Route
+              <PrivateRoute
                 exact
                 path="/movies/auth/favorites"
                 component={AuthFavoriteMoviesPage}
+              />
+              <PrivateRoute
+                exact
+                path="/movies/auth/playlist"
+                component={AuthPlaylistMoviesPage}
               />
               <Route
                 exact

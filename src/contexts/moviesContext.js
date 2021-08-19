@@ -12,7 +12,14 @@ const MoviesContextProvider = (props) => {
   const [favorites, setFavorites] = useState([]);
   const [playlist, setPlaylist] = useState([]);
 
-  
+  // const setAuthFavorites = () => { 
+  //   var authFavorites = [];
+  //   getFavorites({queryKey: ["favorites", { session_id: context.sessionId, account_id: context.user.id} ]}).then
+  //   (res => {return res.results}).then(res => res.forEach(element => authFavorites.push(element.id))).then(setFavorites(authFavorites))
+      
+   
+    
+  // }
 
 
   const addToFavorites = (movie) => {
@@ -56,6 +63,7 @@ const MoviesContextProvider = (props) => {
         removeFromFavorites,
         removeFromPlaylist,
         addReview,
+        //setAuthFavorites
       }}
     >
       {props.children}

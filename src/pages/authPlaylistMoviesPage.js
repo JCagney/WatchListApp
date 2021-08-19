@@ -1,21 +1,21 @@
 import React, { useContext } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "react-query";
-import { getFavorites } from "../api/tmdb-api";
+import { getPlaylist } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
-import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
+import RemoveFromPlaylist from "../components/cardIcons/removeFromPlaylist";
 import WriteReview from "../components/cardIcons/writeReview";
-import FavoriteHeader from "../components/cardHeaders/favoriteHeader";
+import PlaylistHeader from "../components/cardHeaders/playlistHeader";
 import { UserContext } from "../contexts/userContext";
 
 
 
 
-const AuthFavoriteMoviesPage = () => {
+const AuthPlaylistMoviesPage = () => {
   const context = useContext(UserContext);
 
   
-  const {  data, error, isLoading, isError, refetch  }  = useQuery( ["favorites", { session_id: context.sessionId, account_id: context.user.id} ], getFavorites );
+  const {  data, error, isLoading, isError, refetch  }  = useQuery( ["playlist", { session_id: context.sessionId, account_id: context.user.id} ], getPlaylist );
      
   
   if (isLoading) {
@@ -42,23 +42,23 @@ const AuthFavoriteMoviesPage = () => {
     <PageTemplate
       title={
         context.user
-          ? `${context.user.username}'s Favourite Movies`
-          : "Favourite Movies"
+          ? `${context.user.username}'s TMDB Watchlist`
+          : "Watchlist"
       }
       movies={movies}
       action={(movie) => {
         return (
           <>
-            <RemoveFromFavorites movie={movie} refetch={refetch} />
+            <RemoveFromPlaylist movie={movie} refetch={refetch} />
             <WriteReview movie={movie} />
           </>
         ); 
       }}
       cardHeader={(movie) => {
-        return <FavoriteHeader movie={movie} />;
+        return <PlaylistHeader movie={movie} />;
       }}
     />
   );
 };
 
-export default AuthFavoriteMoviesPage;
+export default AuthPlaylistMoviesPage;

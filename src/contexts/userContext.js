@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import qs from "qs";
 import { getSession, getAccount, deleteSession } from "../api/tmdb-api";
+
+import { MoviesContext } from "../contexts/moviesContext";
 
 export const UserContext = React.createContext(null);
 
@@ -8,6 +10,7 @@ const UserContextProvider = (props) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [sessionId, setSessionId] = useState(null);
+  const moviesContext = useContext(MoviesContext);
 
   const authenticate = (props) => {
     if (
@@ -24,7 +27,8 @@ const UserContextProvider = (props) => {
           return getAccount(res.session_id);
         })
         .then((res) => setUser(res));
-      setAuthenticated(true);
+        setAuthenticated(true)
+      
     }else{
         props.history.push("/");
     }
