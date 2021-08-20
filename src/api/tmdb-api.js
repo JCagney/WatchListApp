@@ -218,3 +218,20 @@
         return json;
       });
   };
+
+  export const rateMovie =  (movie_id, rating, session_id) => {
+
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${movie_id}/rating?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}`, {method: 'POST', headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        "value": rating
+      })
+    }
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        return json;
+      });
+  };
+
+  

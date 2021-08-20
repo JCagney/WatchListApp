@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { getFavorites } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
-import WriteReview from "../components/cardIcons/writeReview";
+import RateIcon from "../components/cardIcons/rate";
 import FavoriteHeader from "../components/cardHeaders/favoriteHeader";
 import { UserContext } from "../contexts/userContext";
 
@@ -50,7 +50,7 @@ const AuthFavoriteMoviesPage = () => {
         return (
           <>
             <RemoveFromFavorites movie={movie} refetch={refetch} />
-            <WriteReview movie={movie} />
+            <RateIcon movie={movie} />
           </>
         ); 
       }}
