@@ -1,3 +1,5 @@
+import { SettingsInputAntennaTwoTone } from "@material-ui/icons";
+
   
   
   export const getMovies = async ( args ) => {
@@ -56,7 +58,7 @@
     )
       .then((res) => res.json())
       .then((json) => {
-        // console.log(json.results);
+        console.log(json.results);
         return json.results;
       });
   };
@@ -231,6 +233,18 @@
     .then((res) => res.json())
       .then((json) => {
         return json;
+      });
+  };
+
+  export const getWatchProviders =  ( movie_id ) => {
+     
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${movie_id}/watch/providers?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    )
+    .then((res) => res.json())
+      .then((json) => {
+        console.log(json.results);
+        return json.results;
       });
   };
 

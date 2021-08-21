@@ -5,6 +5,7 @@ import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import RemoveFromPlaylist from "../components/cardIcons/removeFromPlaylist";
+import WatchMovie from "../components/cardIcons/watch";
 //import WriteReview from "../components/cardIcons/writeReview";
 import PlaylistHeader from '../components/cardHeaders/playlistHeader'
 import { UserContext } from "../contexts/userContext";
@@ -41,6 +42,7 @@ const PlaylistMoviesPage = () => {
         return (
           <>
             <RemoveFromPlaylist movie={movie} />
+            <WatchMovie movie={movie} />
           </>
         );
       }}

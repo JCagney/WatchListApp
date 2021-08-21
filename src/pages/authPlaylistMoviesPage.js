@@ -7,6 +7,7 @@ import RemoveFromPlaylist from "../components/cardIcons/removeFromPlaylist";
 import WriteReview from "../components/cardIcons/writeReview";
 import PlaylistHeader from "../components/cardHeaders/playlistHeader";
 import { UserContext } from "../contexts/userContext";
+import WatchMovie from "../components/cardIcons/watch";
 
 
 
@@ -50,7 +51,8 @@ const AuthPlaylistMoviesPage = () => {
         return (
           <>
             <RemoveFromPlaylist movie={movie} refetch={refetch} />
-            <WriteReview movie={movie} />
+            <WatchMovie movie={movie} />
+
           </>
         ); 
       }}

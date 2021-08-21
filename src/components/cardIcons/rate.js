@@ -90,7 +90,7 @@ const handleSnackClose = (event) => {
       <StarRateIcon  color="primary" fontSize="large" ></StarRateIcon>
     </IconButton>  
 
-    {displayed ?  <><br /><Rating name="half-rating" defaultValue={2.5} precision={0.5} onChange={(event, value) => {rate(value); }}/><br /></> : <></>}
+    {displayed ?  <><br /><Rating name="half-rating" value={null} precision={0.5} onChange={(event, value) => {rate(value); }}/><br /></> : <></>}
     </>
 
   );
