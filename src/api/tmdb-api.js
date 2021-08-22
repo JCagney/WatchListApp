@@ -133,7 +133,9 @@
     )
     .then((res) => res.json())
       .then((json) => {
+        console.log(json);
         return json;
+        
       });
   };
 
@@ -244,6 +246,7 @@
     )
     .then((res) => res.json())
       .then((json) => {
+        console.log(json); 
         return json.results;
       });
   };
