@@ -1,22 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import LiveTvIcon from '@material-ui/icons/LiveTv';
-import { getWatchProviders } from "../../api/tmdb-api";
-import { MoviesContext } from "../../contexts/moviesContext";
 import Drawer from "@material-ui/core/Drawer";
 import WatchProviders from "../watchProviders";
 
 
 const WatchMovie = ({ movie }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const context = useContext(MoviesContext);
 
-  const showProviders = (e) => {
- 
-    getWatchProviders(movie.id); 
-
-
-  };
   return (
       <>
     <IconButton

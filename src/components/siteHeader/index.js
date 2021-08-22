@@ -38,7 +38,6 @@ const SiteHeader = ({ history }) => {
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Playlist", path: "/movies/playlist" },
-    { label: "Search", path: "/search" },
   ];
 
   const authMenuOptions = [
@@ -46,7 +45,6 @@ const SiteHeader = ({ history }) => {
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/auth/favorites" },
     { label: "Playlist", path: "/movies/auth/playlist" },
-    { label: "Search", path: "/search" },
   ];
 
   const handleMenuSelect = (pageURL) => {

@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 import { getPlaylist } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import RemoveFromPlaylist from "../components/cardIcons/removeFromPlaylist";
-import WriteReview from "../components/cardIcons/writeReview";
 import PlaylistHeader from "../components/cardHeaders/playlistHeader";
 import { UserContext } from "../contexts/userContext";
 import WatchMovie from "../components/cardIcons/watch";

@@ -1,19 +1,27 @@
 # Assignment - ReactJS app.
 
-Name: ... your name ...
+Name: John Cagney
 
 ## Overview.
 
-...... State the app concept and objectives. If it's the Movies Fan app extension, only state the additional objectives .........
+My app is an extension of the Movies Fan app. 
+
+The objectives are
 
 
 ...... A bullet-point list of user features. If it's the Movies Fan app extension, only list new/modified features...... 
  
- + Feature 1
- + Feature 2
- + Feature 3
- + etc
- + etc
+ + Home: When  "Add to Favorites" is selected the Icon Button "Add to Favorites" no longer shows 
+ + Home: Pagination is introduced at bottom of page using the Material UI Pagination component and via discover API
+ + Upcoming Page: In the Upcoming page, selecting "Add to Playlist" option now adds the "Added to Plylist" header icon and adds the movie to the Playlist Page, and the Icon Button "Add to Playlist" no longer shows 
+ + Playlist Page: This displays the movies added to playlist. There is an Icon Button on the movie cards to show Watch Providers. This feature opens a Drawer in which the Watch Providers API data (name and logo of provider) for the movie is displayed. The data is sorted by Region and Option via drop down menus before being displayed 
+ + App Menu: An option to Login to TMDB is present. This requests an authentication token from TMDB via API get call, then redirects to TMDB with the token in the url to authenticate. When successfully authenticated TMDB redirects user back to /approved where the authenticate method is called from the User Context. This parses the authentication token from the url and uses it to request a session ID from TMDB which is issued if the authentication token was successfully authenticated. The session ID is stored to the User Context as is the user account info. The user is now authenticated to their TMDB and the app will react accordingly. A small authenticated menu appears in the main menu with an option to logout 
+ + Authenticated Home Page: Clicking on the Add to Favorites button now adds a movie to the users TMDB favorites, so some of the card headers functionality was lost in the authenticated view. 
+ Authenticated Favorites: This view shows the TMDB favorites of the logged in user  
+ + Authenticated Upcomiong Page: Clicking on the Add to Playlist button now adds a movie to the users TMD watchlist. 
+ + Authenticated Favorites Page: This page shows the authenticated user's TMDB favorites. 
+ + Authenticated Favorites Page: Instead of the Review icon button there is now a star icon which opens a Material UI Rating component. The user selects a rating out of 10 which is then sent to TMDB using the Session ID and a confirmation Snackbar. Sending a rating again merely updates the user's rating of the movie on the TMDB side and this can b e confirmed on the TMDB website.   
+ + Authenticated Playlist Page: This page shows the authenticated user's TMDB watchlist.   
 
 ## Setup requirements.
 

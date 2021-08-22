@@ -1,9 +1,8 @@
-import { SettingsInputAntennaTwoTone } from "@material-ui/icons";
 
-  
   
   export const getMovies = async ( args ) => {
     console.log(args);
+    // eslint-disable-next-line 
     const [prefix, { page }] = args.queryKey;
 
     const response = await fetch(
@@ -126,6 +125,7 @@ import { SettingsInputAntennaTwoTone } from "@material-ui/icons";
 
   export const getFavorites =  (args) => {
     console.log(args);
+    // eslint-disable-next-line 
     const [prefix, { account_id, session_id }] = args.queryKey;
 
     return fetch(
@@ -176,6 +176,7 @@ import { SettingsInputAntennaTwoTone } from "@material-ui/icons";
 
   export const getPlaylist =  (args) => {
     console.log(args);
+    // eslint-disable-next-line 
     const [prefix, { account_id, session_id }] = args.queryKey;
 
     return fetch(
@@ -243,7 +244,6 @@ import { SettingsInputAntennaTwoTone } from "@material-ui/icons";
     )
     .then((res) => res.json())
       .then((json) => {
-        console.log(json.results);
         return json.results;
       });
   };
