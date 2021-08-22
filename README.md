@@ -159,9 +159,14 @@ link: "https://www.themoviedb.org/movie/459151-the-boss-baby-family-business/wat
 
 ...... Insert screenshots of the app's views, with appropriate captions (see example below). (For the Movies Fan App, only show the new/modified views) ........
 
-![][view]
->Shows detailed information on a movie. Clicking the 'Reviews' floating action button will display extracts from critic reviews.
-
+![][WatchProviders]
+A drawer displays the Watch provider data 
+![][rate]
+A Rating component 
+![][rated]
+Notification of successful rating 
+![][AuthenticatedHeader]
+Header when user has aithenticated with TMDB
 ### Routing.
 
 ...... Insert a list of the routes supported by your app and state the associated view. If relevant, specify which of the routes require authentication, i.e. protected/private. [For the Movies Fan app, only new routes should be listed.] ......... 
@@ -180,4 +185,8 @@ link: "https://www.themoviedb.org/movie/459151-the-boss-baby-family-business/wat
 
 [model]: ./data.jpg
 [view]: ./view.png
+[WatchProviders]: ./watch_providers_drawer.jpg
+[rate]: ./rate.jpg
+[rated]: ./rated.jpg
+[AuthenticatedHeader]: ./authenticated_header.jpg
 [stories]: ./storybook.png
