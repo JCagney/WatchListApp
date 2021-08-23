@@ -81,7 +81,7 @@ fetch(`https://api.themoviedb.org/3/account/${account_id}/favorite?api_key=${pro
         media_id: movie_id,
         favorite: true})})
 
-Remove (post) favorite movie 
+ + Remove (post) favorite movie 
 fetch(`https://api.themoviedb.org/3/account/${account_id}/favorite?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${session_id}`, {method: 'POST', headers: { 'Content-Type': 'application/json;charset=utf-8' },body: JSON.stringify({
         media_type: "movie",
         media_id: movie_id,
@@ -160,13 +160,13 @@ link: "https://www.themoviedb.org/movie/459151-the-boss-baby-family-business/wat
 ...... Insert screenshots of the app's views, with appropriate captions (see example below). (For the Movies Fan App, only show the new/modified views) ........
 
 ![][WatchProviders]
-A drawer displays the Watch provider data 
+>A drawer displays the Watch provider data 
 ![][rate]
-A Rating component 
+>A Rating component 
 ![][rated]
-Notification of successful rating 
+>Notification of successful rating 
 ![][AuthenticatedHeader]
-Header when user has aithenticated with TMDB
+>Header when user has aithenticated with TMDB
 ### Routing.
 
 ...... Insert a list of the routes supported by your app and state the associated view. If relevant, specify which of the routes require authentication, i.e. protected/private. [For the Movies Fan app, only new routes should be listed.] ......... 
