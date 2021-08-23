@@ -159,17 +159,18 @@ link: "https://www.themoviedb.org/movie/459151-the-boss-baby-family-business/wat
 
 ...... Insert screenshots of the app's views, with appropriate captions (see example below). (For the Movies Fan App, only show the new/modified views) ........
 
-![][WatchProviders]
 >A drawer displays the Watch provider data 
+![][WatchProviders]
 
-![][rate]
 >A Rating component 
+![][rate]
 
-![][rated]
 >Notification of successful rating 
+![][rated]
 
-![][AuthenticatedHeader]
 >Header when user has aithenticated with TMDB
+![][AuthenticatedHeader]
+
 
 ### Routing.
 
