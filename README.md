@@ -161,26 +161,35 @@ link: "https://www.themoviedb.org/movie/459151-the-boss-baby-family-business/wat
 
 ![][WatchProviders]
 >A drawer displays the Watch provider data 
+
 ![][rate]
 >A Rating component 
+
 ![][rated]
 >Notification of successful rating 
+
 ![][AuthenticatedHeader]
 >Header when user has aithenticated with TMDB
+
 ### Routing.
 
 ...... Insert a list of the routes supported by your app and state the associated view. If relevant, specify which of the routes require authentication, i.e. protected/private. [For the Movies Fan app, only new routes should be listed.] ......... 
 
-+ GET /blogs - displays all published blogs.
-+ POST /blogs (protected) - add a new blog.
-+ GET /blogs/:id - displays a particular blog.
-+ GET /blogs/:id/comments (protected) - detail view of a particular blog and its comments.
-+ etc.
-+ etc.
+
++ GET movies/playlist - dispays playlist page (unauthenticated) 
+
++ GET /authenticate - runs authentication method in index.js andf send user to TMDB to approve the authentication token 
+
++ GET /approved - return page for TMDB approved logins, where authentication is posted to TMDB and then user is redirected to Home 
+
++ GET /movies/auth/favorites - displays TMDB favorites for authenticated users 
+
++ GET /movies/auth/playlist - displays TMDB watchlist for authenticated users 
+
 
 ## Independent learning (If relevant).
 
-....... Briefly state any technologies/techniques used in your project codebase that was not covered in the lectures/labs. Provide source code filename (source code excerpts are not required in most cases) references to support your assertions and include references (articles/blogs) ......... 
+I just used the official TMDB API documentation to guide me through the authentication process 
 
 
 [model]: ./data.jpg
